@@ -75,6 +75,31 @@ class Clusterer:
 
         return nearest_index
 
+    def save(self, save_dir = None):
+
+        if save_dir is None:
+            save_dir = f"threshold_{self.threshold}"
+
+        if os.path.isdir(save_dir) == False:
+            os.mkdir(save_dir)
+
+
+        for index, image_list in enumerate(self.cluster_data):
+            current_cluster_path = os.path.join(save_dir, f"{index}")
+
+            if os.path.isdir(current_cluster_path) == False:
+                os.mkdir(current_cluster_path)
+
+            for cluster_image in  image_list:
+                index = len(os.listdir(current_cluster_path))
+                save_image_name = f"{index}.jpg"
+                save_cluster_image_path = os.path.join(current_cluster_path, save_image_name)
+                cv2.imwrite(save_cluster_image_path, cluster_image)
+
+
+
+
+
 
 
 

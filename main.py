@@ -7,6 +7,7 @@ def main():
     limit_gpu()
     clusterer = Clusterer(image_dir_path = "./src_dir")
     clusterer.run()
+    clusterer.save()
 
 
 
